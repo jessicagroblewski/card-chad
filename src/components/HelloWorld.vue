@@ -37,54 +37,46 @@ const state = reactive({ count: 0 })
 
 export default {
   methods: {
-    hoover() {
-      document.querySelectorAll(".card").forEach((item) => {
-        if(!item.classList.contains("hoverCard")){
-          item.classList.add("hoverCard");
-          console.log(item);
-        }
-        else{
-          item.classList.remove("hoverCard");
-          console.log(item);
-        }
-      });
-    },
-    
-    duplicate() {
-      const cloneCard = document.querySelector(".card").cloneNode(true);
-      document.body.appendChild(cloneCard);
-      console.log(cloneCard);    
-    },
+   const btn_title = document.getElementById("title");
+const btn_bg = document.getElementById("bg");
+const btn_details = document.getElementById("details");
 
-    background() {
-      document.querySelectorAll(".card").forEach((item) => {
-        if(!item.classList.contains("basic")){
-          item.classList.add("basic");
-          console.log(item);
-        }
-        else{
-          item.classList.remove("basic");
-          console.log(item);
-        }
-      });
-    },
+document.querySelector("#topbutton").addEventListener('click', function(e) {
+  const itemToClone = document.querySelector('.card').cloneNode(true);
+  document.body.appendChild(itemToClone);
+});
 
-    heading() {
-      document.querySelectorAll(".title").forEach((item) => {   
-        if(item.innerHTML=="something else"){
-          item.innerHTML="Chad of Cyber IST";
-        }
-        else{
-          item.innerHTML="something else";
-        }
-      });
-    },
+document.querySelector("#bg").addEventListener("click", function (e) {
+  const card = document.getElementById("card");
+  card.style.backgroundColor = "#9AE9EC";
+});
 
-    //Kinda borked rn
-    deleter(){
-      document.querySelector(".card:last-child").remove();
-      console.log(card);
+btn_details.addEventListener("click", (e) => {
+  let desc = btn_details.previousElementSibling;
+  desc.style.display == "none"
+    ? (desc.style.display = "")
+    : (desc.style.display = "none");
+});
+
+
+document.querySelector("#title").addEventListener('click', function(e) {
+  let name = prompt("Name Business....");
+  if (name) {
+    document.querySelector('.card h3').innerText = name;
+  }
+});
+
+document.querySelector('#delete').addEventListener('click', function(e) {
+  let wantsTo = confirm("Are you sure?");
+  if (wantsTo) {
+    if (document.querySelector('.card:last-child') !== document.querySelector('.card')) {
+      document.querySelector('.card:last-child').remove();      
     }
+    else {
+      alert("YOU CAN NOT DELETE DREW!!!!");
+    }
+  }
+});
   }
 }
 </script>
